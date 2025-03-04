@@ -13,7 +13,9 @@ class MemoryStore:
     def __init__(self, file_path: Optional[Path] = None):
         self.file_path = file_path or MEMORY_FILE
         self.memories = self._load_memories()
-        
+    #remember that the file_path is optional and if it is not provided, it will default to the MEMORY_FILE from the settings.
+    #remember here in self.memories we are loading all the memories from the disk. Could be optimized in future to load only required memories.
+ 
     def _load_memories(self) -> List[Memory]: #returns a list of memories from disk.
         if os.path.exists(self.file_path):
             with open(self.file_path, 'r') as f: #Automatically closes the file.
