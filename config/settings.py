@@ -51,7 +51,8 @@ TWITTER_ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN", "")
 TWITTER_ACCESS_SECRET = os.environ.get("TWITTER_ACCESS_SECRET", "")
 
 LLM_API_KEY = os.environ.get("LLM_API_KEY", "")
-LLM_MODEL = "tbd" #might push this to an environment variable 
+LLM_MODEL = os.environ.get("LLM_MODEL", "")
+LLM_BASE_URL = "https://openrouter.ai/api/v1"
 
 # Storage Settings
 BASE_DIR = Path(__file__).resolve().parent.parent

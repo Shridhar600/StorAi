@@ -180,3 +180,4 @@ myenv/Scripts/pip3.11.exe
 myenv/Scripts/pip3.exe
 myenv/Scripts/python.exe
 myenv/Scripts/pythonw.exe
+.vscode/settings.json
