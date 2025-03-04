@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+import json
+from decouple import config
 
 # Basic info about the character and the company
 CHARACTER_NAME = "Vedant"
@@ -18,40 +20,24 @@ There should be a logging mechanism too to track the data flow.
 The service should also be able to handle large files and transfer them securely.
 The file type is JSON and the data needs to be transformed before storing in the DB."""
 
-#In future will have an AI agent to generate the project stages
-PROJECT_STAGES = [
-    "onboarding and environment setup",
-    "learning about the SFTP requirements",
-    "designing initial Spring Boot service structure",
-    "exploring Snowflake DB features",
-    "exploring SFTP client libraries for Java",
-    "exploring the sftp file structure and data format",
-    "connecting with the project manager for clarifications",
-    "implementing SFTP client connection",
-    "adding error handling for SFTP transfers",
-    "implementing logging mechanism",
-    "handling large file transfers",
-    "implementing secure file transfers",
-    "exploring Postgres DB features",
-    "learning about postgres DB schema design",
-    "learning about integrating postgres with Spring Boot",
-    "implementing a data logging mechanism to log the files ingested and relevant meta data in a postgres DB",
-    "exploring JSON parsing libraries for Java",
-    "designing Snowflake DB schema",
-    "implementing data transformation logic",
-    "setting up integration tests",
-    "preparing for code review",
-    "addressing code review feedback",
-    "preparing for deployment"
-]
+# Load project stages from JSON file
+PROJECT_STAGES_FILE = Path(__file__).resolve().parent / "project_stages.json"
 
-TWITTER_API_KEY = os.environ.get("TWITTER_API_KEY", "")
-TWITTER_API_SECRET = os.environ.get("TWITTER_API_SECRET", "")
-TWITTER_ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN", "")
-TWITTER_ACCESS_SECRET = os.environ.get("TWITTER_ACCESS_SECRET", "")
+def load_project_stages(file_path: Path = PROJECT_STAGES_FILE) -> list:
+    """Loads project stages from the specified JSON file."""
+    with open(file_path, 'r') as f:
+        return json.load(f)
 
-LLM_API_KEY = os.environ.get("LLM_API_KEY", "")
-LLM_MODEL = os.environ.get("LLM_MODEL", "")
+PROJECT_STAGES = load_project_stages()
+
+
+TWITTER_API_KEY = config("TWITTER_API_KEY", default="")
+TWITTER_API_SECRET = config("TWITTER_API_SECRET", default="")
+TWITTER_ACCESS_TOKEN = config("TWITTER_ACCESS_TOKEN", default="")
+TWITTER_ACCESS_SECRET = config("TWITTER_ACCESS_SECRET", default="")
+
+LLM_API_KEY = config("LLM_API_KEY", default="")
+LLM_MODEL = config("LLM_MODEL", default="")
 LLM_BASE_URL = "https://openrouter.ai/api/v1"
 
 # Storage Settings
