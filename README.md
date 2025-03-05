@@ -1,4 +1,4 @@
-# AI Intern Twitter Bot
+# StorAI
 
 ## Description
 
